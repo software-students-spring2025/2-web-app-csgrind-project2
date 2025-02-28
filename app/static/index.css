@@ -54,3 +54,25 @@ nav ul li a {
 nav ul li a:hover {
     color: #ffcc00;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background-color: #949494;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #f4f4f4;
+}

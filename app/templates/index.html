@@ -23,11 +23,45 @@
                 </ul>
             </nav>
         </header>
-        <main>{% block container %} 
-            
+        <main>
+        {% block container %} 
+        <table>
+            <thead>
+                <tr>
+                    <th>NetID</th>
+                    <th>Item</th>
+                    <th>Item Description</th>
+                    <th>Last Seen Floor</th>
+                    <th>Last Seen Area</th>
+                    <th>Lost Date</th>
+                    <th>Date Found</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>6</td>
+                    <td>North</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>4</td>
+                    <td>South</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+            </tbody>
+        </table>
 
 
-        {% endblock %}</main>
+        {% endblock %}
+        </main>
         <footer>
           
         </footer>
