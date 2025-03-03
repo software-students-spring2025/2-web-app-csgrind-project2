@@ -23,11 +23,14 @@ BobstLAF is a mobile web application for the NYU community to report and recover
 
 ## Steps necessary to run the software
 
-1. run `pipenv install` to install necessary modules
-2. run `python run.py` to start app
-3. navigate to the given URL to access the landing page
+1. Run `pip install pipenv` to install the virtual environment management tool.
+1. Run `pipenv install` to install necessary modules.
+2. Run `pipenv shell` to enter the virtual environment.
+3. Run `python run.py` to start the app.
+4. Navigate to the given URL to access the landing page.
 
 ## Task boards
 
 [Sprint 1 Task Board](https://github.com/orgs/software-students-spring2025/projects/63)
-[Spring 2 Task Board](https://github.com/orgs/software-students-spring2025/projects/133)
+
+[Sprint 2 Task Board](https://github.com/orgs/software-students-spring2025/projects/133)
