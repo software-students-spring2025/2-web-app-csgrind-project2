@@ -5,9 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobstLAF</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 
 <body>
-    Hello
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>BobstLAF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                    <li><a href="#">Page 4</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+        {% block container %} 
+        <table>
+            <thead>
+                <tr>
+                    <th>NetID</th>
+                    <th>Item</th>
+                    <th>Item Description</th>
+                    <th>Last Seen Floor</th>
+                    <th>Last Seen Area</th>
+                    <th>Lost Date</th>
+                    <th>Date Found</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>6</td>
+                    <td>North</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>4</td>
+                    <td>South</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% endblock %}
+        </main>
+        <footer>
+          
+        </footer>
+      </div>
 </body>
