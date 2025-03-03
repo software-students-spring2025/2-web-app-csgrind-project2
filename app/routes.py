@@ -1,12 +1,26 @@
 from flask import Blueprint, render_template
 
-#create a Blueprint called main
 main = Blueprint("main", __name__)
 
-#defines '/' as the index.html html file
 @main.route("/")
 def home():
     return render_template("index.html")
+
+@main.route("/page1")
+def page1():
+    return render_template("page1.html")
+
+@main.route("/page2")
+def page2():
+    return render_template("page2.html")
+
+@main.route("/page3")
+def page3():
+    return render_template("page3.html")
+
+@main.route("/page4")
+def page4():
+    return render_template("page4.html")
 
 #login, method POST
 @main.route("/login", methods=["POST"])
