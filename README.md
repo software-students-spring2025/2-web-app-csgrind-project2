@@ -30,3 +30,4 @@ BobstLAF is a mobile web application for the NYU community to report and recover
 ## Task boards
 
 [Sprint 1 Task Board](https://github.com/orgs/software-students-spring2025/projects/63)
+[Spring 2 Task Board](https://github.com/orgs/software-students-spring2025/projects/133)
