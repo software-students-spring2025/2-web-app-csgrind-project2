@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BobstLAF{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>BobstLAF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('main.page1') }}">Page 1</a></li>
+                    <li><a href="{{ url_for('main.page2') }}">Page 2</a></li>
+                    <li><a href="{{ url_for('main.page3') }}">Page 3</a></li>
+                    <li><a href="{{ url_for('main.page4') }}">Page 4</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2025 BobstLAF</p>
+        </footer>
+    </div>
+</body>
+</html>
