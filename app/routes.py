@@ -104,7 +104,7 @@ def lost_items():
         # If we have a nonempty search
         if query:
             search["$or"] = [
-                {"item_name": {"$regex": query, "$options": "i"}}, 
+                {"itemName": {"$regex": query, "$options": "i"}}, 
                 {"description": {"$regex": query, "$options": "i"}}
             ]
 
@@ -125,12 +125,12 @@ def found_items():
         items_collection = mongo.db.item
         query = request.args.get("query", "").strip() # get search query
 
-        search = {"status": "lost"}
+        search = {"status": "found"}
 
          # If we have a nonempty search
         if query:
             search["$or"] = [
-                {"item_name": {"$regex": query, "$options": "i"}}, 
+                {"itemName": {"$regex": query, "$options": "i"}}, 
                 {"description": {"$regex": query, "$options": "i"}}
             ]
 
@@ -148,7 +148,7 @@ def found_items():
 @app.route("/submit_post", methods=["POST"])
 def submit_post():
     try:
-        item_name = request.form["item_name"]
+        itemName = request.form["itemName"]
         description = request.form["description"]
         status = request.form["status"]
         location = int(request.form["location"])
@@ -156,7 +156,7 @@ def submit_post():
 
         if status == 'found':
             item = {
-                "itemName": item_name,
+                "itemName": itemName,
                 "description": description,
                 "status": status,
                 "floor": location,
@@ -167,7 +167,7 @@ def submit_post():
             
         else:
             item = {
-                "itemName": item_name,
+                "itemName": itemName,
                 "description": description,
                 "status": status,
                 "floor": location,
