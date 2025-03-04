@@ -51,7 +51,7 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
-/* Account Header */
+
 .account-header {
     display: flex;
     justify-content: space-between;
@@ -59,7 +59,7 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
-/* Logout Button */
+
 .logout-btn {
     padding: 8px 15px;
     background: #d9534f; 
@@ -75,7 +75,7 @@ nav ul li a:hover {
     background: #c9302c;
 }
 
-/* Account Card */
+
 .account-card {
     background: white;
     padding: 20px;
@@ -85,7 +85,7 @@ nav ul li a:hover {
     text-align: left;
 }
 
-/* Previous Posts Section */
+
 .previous-posts {
     display: flex;
     flex-direction: column;
@@ -110,17 +110,17 @@ nav ul li a:hover {
     font-size: 16px;
 }
 
-/* Container for buttons */
+
 .post-actions {
     display: flex;
-    gap: 10px; /* Space between buttons */
+    gap: 10px; 
     margin-top: 10px;
 }
 
-/* General Button Styling */
+
 .edit-btn, .delete-btn {
     display: inline-block;
-    padding: 10px 16px; /* Ensures uniform button size */
+    padding: 10px 16px; 
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -128,31 +128,30 @@ nav ul li a:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
-    min-width: 80px; /* Ensures buttons are same width */
+    min-width: 80px; 
 }
 
-/* Edit Button: Purple Theme */
+
 .edit-btn {
-    background-color: #57068c; /* Matches website theme */
+    background-color: #57068c; 
     color: white;
     text-decoration: none;
 }
 
 .edit-btn:hover {
-    background-color: #450574; /* Slightly darker purple */
+    background-color: #450574; 
 }
 
-/* Delete Button: Red */
+
 .delete-btn {
-    background-color: #dc3545; /* Red */
+    background-color: #dc3545; 
     color: white;
 }
 
 .delete-btn:hover {
-    background-color: #c82333; /* Darker red */
+    background-color: #c82333; 
 }
 
-/* Ensure delete form does not disrupt layout */
 .delete-form {
     margin: 0;
     display: inline-block;

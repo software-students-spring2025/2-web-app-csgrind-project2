@@ -39,7 +39,7 @@
                     <p><strong>Last Seen on Floor:</strong> {{ item.floor }}</p>
                     <p><strong>Date Found:</strong> {{ item.dateFound }}</p>
 
-                    <!-- Edit & Delete Buttons (side-by-side) -->
+                    <!-- Edit, Delete Buttons -->
                     <div class="post-actions">
                         {% if session["role"] == "admin" or session["user_id"] == item.userId %}
                             <a href="{{ url_for('edit_post', post_id=item._id) }}" class="edit-btn">Edit</a>
