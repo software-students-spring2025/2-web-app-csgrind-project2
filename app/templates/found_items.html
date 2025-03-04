@@ -1,13 +1,3 @@
-<!----
-{% extends "base.html" %}
-
-{% block title %}Page 2 - BobstLAF{% endblock %}
-
-{% block content %}
-    <h2>Welcome to Page 2</h2>
-    <p>This is the content of Page 2.</p>
-{% endblock %}
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,11 +13,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lost_items.html">Lost</a></li>
-                <li><a href="found_items.html">Found</a></li>
-                <li><a href="post_item.html">Post</a></li>
-                <li><a href="account.html">Account</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('lost_items') }}">Lost</a></li>
+                <li><a href="{{ url_for('found_items') }}">Found</a></li>
+                <li><a href="{{ url_for('post_item') }}">Post</a></li>
+                <li><a href="{{ url_for('account') }}">Account</a></li>     
             </ul>
         </nav>
     </header>
