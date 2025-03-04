@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobstLAF - Found Items</title>
-    <link rel="stylesheet" href="../static/found_items.css">
+    <title>BobstLAF - Post Item</title>
+    <link rel="stylesheet" href="../static/post_item.css">
 </head>
 <body>
     <header>
@@ -23,23 +23,39 @@
     </header>
     <div class="container">
         <main>
-            <h2>Found Items</h2>
-            <div class="items-container">
-                <div class="item-card">
-                    <h3>Gucci Wallet</h3>
-                    <p><strong>Description:</strong> Brown leather Gucci wallet</p>
-                    <p><strong>Found on Floor:</strong> 1</p>
-                    <p><strong>Date Found:</strong> 02/16/2025</p>
-                    <p><strong>Last Updated:</strong> 02/16/2025</p>
+            <h2>Post a Lost or Found Item</h2>
+            
+            <form action="{{ url_for('submit_post') }}" method="POST">
+                <div class="form-group">
+                    <label for="item_name">Item Name</label>
+                    <input type="text" id="item_name" name="item_name" required>
                 </div>
-                <div class="item-card">
-                    <h3>Apple AirPods</h3>
-                    <p><strong>Description:</strong> White AirPods Pro in a black case</p>
-                    <p><strong>Found on Floor:</strong> 3</p>
-                    <p><strong>Date Found:</strong> 02/14/2025</p>
-                    <p><strong>Last Updated:</strong> 02/14/2025</p>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Last Seen Floor (Floor Number)</label>
+                    <input type="number" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date Lost/Found</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
         </main>
     </div>
 </body>
