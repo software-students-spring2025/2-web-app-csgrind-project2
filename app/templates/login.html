@@ -12,13 +12,15 @@
             <h1>BobstLAF</h1>
             <p>Connect with your campus community to find lost items.</p>
             
-            <form action="index.html" method="POST"> <!---{{ url_for('login') }}--->
+            <!-- Change form action to use Flask's url_for for the login route -->
+            <form action="{{ url_for('login') }}" method="POST"> 
                 <input type="text" name="email" placeholder="NYU Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="login-btn">Log In</button>
             </form>
             <hr>
-            <a href="register.html" class="create-account-btn">Create new account</a> <!-- {{ url_for('register') }} -->
+            <!-- Change link to use Flask's url_for for the register route -->
+            <a href="{{ url_for('register') }}" class="create-account-btn">Create new account</a>
         </div>
     </div>
 </body>
