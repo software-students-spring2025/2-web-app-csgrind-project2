@@ -1,4 +1,4 @@
-from flask import jsonify, render_template, request, redirect, url_for
+from flask import jsonify, render_template, request, redirect, url_for, session, flash
 from app import app, mongo
 
 @app.route("/")
@@ -29,9 +29,23 @@ def post_item():
 def register():
     return render_template("register.html")
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    if request.method == "POST":
+        email = request.form.get("email")  # Get email from form
+        password = request.form.get("password")  # Get password from form
+
+        # Look for the user in the MongoDB 'user' collection
+        user = mongo.db.user.find_one({"email": email})
+
+        if user and user["password"] == password:  
+            session["user_id"] = str(user["_id"])  # Store user session
+            return redirect(url_for("home"))  # Redirect to home page
+        
+        else:
+            flash("Invalid email or password. Please try again.")
+
+    return render_template("login.html")  # Render login page
 
 @app.route("/account")
 def account():
