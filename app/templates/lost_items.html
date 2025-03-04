@@ -26,20 +26,16 @@
         <main>
             <h2>Lost Items</h2>
             <div class="items-container">
+                {% for item in lost_items %}
                 <div class="item-card">
-                    <h3>Backpack</h3>
-                    <p><strong>Description:</strong> Black Adidas backpack</p>
-                    <p><strong>Last Seen Floor:</strong> 4</p>
-                    <p><strong>Last Seen Area:</strong> Study Lounge</p>
-                    <p><strong>Lost Date:</strong> 03/01/2025</p>
+                    <h3>{{ item.item_name }}</h3>
+                    <p><strong>Description:</strong> {{ item.description }}</p>
+                    <p><strong>Last Seen Floor:</strong> {{ item.floor }}</p>
+                    <p><strong>Lost Date:</strong> {{ item.dateLost }}</p>
                 </div>
-                <div class="item-card">
-                    <h3>Water Bottle</h3>
-                    <p><strong>Description:</strong> Blue Hydroflask</p>
-                    <p><strong>Last Seen Floor:</strong> 6</p>
-                    <p><strong>Last Seen Area:</strong> Library Entrance</p>
-                    <p><strong>Lost Date:</strong> 02/28/2025</p>
-                </div>
+                {% else %}
+                <p>No lost items have been reported yet.</p>
+                {% endfor %}
             </div>
         </main>
         <footer>

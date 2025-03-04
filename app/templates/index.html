@@ -47,16 +47,16 @@
             <!-- Recently Reported Items -->
             <h3>Recently Reported</h3>
             <div class="items-container">
+                {% for item in recent_items %}
                 <div class="item-card">
-                    <h3>Backpack</h3>
-                    <p><strong>Lost on Floor:</strong> 4</p>
-                    <p><strong>Date:</strong> 03/01/2025</p>
+                    <h3>{{ item.item_name }}</h3>
+                    <p><strong>Status:</strong> {{ item.status | capitalize }}</p>
+                    <p><strong>Last Seen Floor:</strong> {{ item.floor }}</p>
+                    <p><strong>Date:</strong> {{ item.get('dateLost', item.get('dateFound')) }}</p>
                 </div>
-                <div class="item-card">
-                    <h3>Wallet</h3>
-                    <p><strong>Found on Floor:</strong> 2</p>
-                    <p><strong>Date:</strong> 02/28/2025</p>
-                </div>
+                {% else %}
+                <p>No recent reports available.</p>
+                {% endfor %}
             </div>
 
             <!-- Post an Item -->
