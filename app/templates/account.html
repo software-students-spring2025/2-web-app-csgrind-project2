@@ -33,31 +33,35 @@
             <!-- Account Details -->
             <div class="account-card">
                 <h3>Account Details</h3>
-                <p><strong>First Name:</strong> Larry</p>
-                <p><strong>Last Name:</strong> Yang</p>
-                <p><strong>Email:</strong> ly2380@nyu.edu</p>
-                <p><strong>Role:</strong> Student</p>
-                <p><strong>Account Created:</strong> March 3, 2025</p>
+                <p><strong>First Name:</strong> {{ user.firstName }}</p>
+                <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Role:</strong> {{ user.role }}</p>
+                <p><strong>Account Created:</strong>{{ user.createdAt}}</p>
             </div>
 
             <!-- Previous Posts Section -->
             <h3>My Previous Posts</h3>
             <div class="previous-posts">
-                <div class="post-card">
-                    <h4>Lost - Black Backpack</h4>
-                    <p><strong>Description:</strong> Black Adidas backpack</p>
-                    <p><strong>Last Seen Floor:</strong> 4</p>
-                    <p><strong>Last Seen Area:</strong> Study Lounge</p>
-                    <p><strong>Lost Date:</strong> 03/01/2025</p>
-                </div>
+                {% if user_posts %}
+                    {% for post in user_posts %}
+                        <div class="post-card">
+                            <h4>Lost - Black Backpack</h4>
+                            <p><strong>Description:</strong> {{ post.description }}</p>
+                            <p><strong>Last Seen Floor:</strong> {{ post.floor }}</p>
 
-                <div class="post-card">
-                    <h4>Found - White AirPods</h4>
-                    <p><strong>Description:</strong> White AirPods Pro in a black case</p>
-                    <p><strong>Found on Floor:</strong> 3</p>
-                    <p><strong>Date Found:</strong> 02/14/2025</p>
-                    <p><strong>Last Updated:</strong> 02/14/2025</p>
-                </div>
+                            {% if post.status == 'lost' %}
+                                <p><strong>Last Seen Area:</strong> {{ post.lastSeenArea }}</p>
+                                <p><strong>Lost Date:</strong> {{ post.dateLost }}</p>
+                            {% else %}
+                                <p><strong>Found Date:</strong> {{post.dateFound}}</p>
+                                <p><strong>Last Updated:</strong> {{post.updatedAt}}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No previous posts found.</p>
+                {% endif %}
             </div>
         </main>
     </div>
