@@ -35,7 +35,7 @@ def register():
         password = request.form["password"]
         role = request.form["role"]
 
-        # Check if the user already exists
+        # Check if the user email already has a registered account
         existing_user = mongo.db.user.find_one({"email": email})
         if existing_user:
             flash("Email already registered. Please log in.")
@@ -43,10 +43,10 @@ def register():
 
         # If the user does not exist, insert the new user
         mongo.db.user.insert_one({
+            "email": email,
+            "password": password, 
             "firstName": first_name,
             "lastName": last_name,
-            "email": email,
-            "password": password,  # Note: you may want to hash the password before saving it
             "role": role
         })
         
@@ -65,7 +65,8 @@ def login():
         user = mongo.db.user.find_one({"email": email})
 
         if user and user["password"] == password:  
-            session["user_id"] = str(user["_id"])  # Store user session
+            session["user_id"] = str(user["_id"])  # user session
+            session["role"] = user["role"]         # role for use in editing/updating privileges
             return redirect(url_for("home"))  # Redirect to home page
         
         else:
@@ -79,13 +80,20 @@ def account():
         # Ensure user is logged in
         user_id = session.get("user_id")
 
+        if not user_id:
+            flash("You must be logged in to access your account.", "error")
+            return redirect(url_for("login"))
+
         user = mongo.db.user.find_one({"_id": ObjectId(user_id)})
 
         if not user:
-            flash("User not found.")
+            flash("User not found.", "error")
             return redirect(url_for("login"))
 
         user_posts = list(mongo.db.item.find({"userId": str(user["_id"])}).sort("dateLost", -1))
+
+        for post in user_posts:
+            post["_id"] = str(post["_id"])
 
         return render_template("account.html", user=user, user_posts=user_posts)
 
@@ -190,6 +198,78 @@ def submit_post():
     except Exception as e:
         print(f"Error submitting post: {e}")
         return redirect(url_for("post_item"))
+
+@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
+def edit_post(post_id):
+    try:
+        # Check if user is logged in
+        user_id = session.get("user_id")
+        user_role = session.get("role")
+
+        items_collection = mongo.db.item
+        post = items_collection.find_one({"_id": ObjectId(post_id)})
+
+        if not post:
+            flash("No posts created.", "error")
+            return redirect(url_for("home"))
+
+        # Admin or post owner can edit
+        if user_role != "admin" and str(post["userId"]) != user_id:
+            flash("You do not have permission to edit this post.", "error")
+            return redirect(url_for("home"))
+
+        if request.method == "POST":
+            post["itemName"] = request.form["itemName"]
+            post["description"] = request.form["description"]
+            post["floor"] = int(request.form["location"])
+            post["updatedAt"] = request.form["date"]
+
+            items_collection.update_one({"_id": ObjectId(post_id)}, {"$set": post})
+
+            flash("Post updated successfully!", "success")
+            return redirect(url_for("home"))
+
+        return render_template("edit_post.html", post=post)
+
+    except Exception as e:
+        print(f"Error updating post: {e}")
+        flash("An error occurred. Please try again.", "error")
+        return redirect(url_for("home"))
+
+@app.route("/delete_post/<post_id>", methods=["POST"])
+def delete_post(post_id):
+    try:
+        # Ensure user is logged in
+        user_id = session.get("user_id")
+        user_role = session.get("role")
+
+        if not user_id:
+            flash("You must be logged in to delete a post.", "error")
+            return redirect(url_for("login"))
+
+        # Find the post
+        post = mongo.db.item.find_one({"_id": ObjectId(post_id)})
+        if not post:
+            flash("Post not found.", "error")
+            return redirect(url_for("home"))
+
+        # Ensure user has the right to delete
+        if user_role != "admin" and str(post["userId"]) != user_id:
+            flash("You do not have permission to delete this post.", "error")
+            return redirect(url_for("home"))
+
+        # Delete the post
+        mongo.db.item.delete_one({"_id": ObjectId(post_id)})
+
+        flash("Post deleted successfully!", "success")
+        return redirect(url_for("home"))  # Redirect to account page after deletion
+
+    except Exception as e:
+        print(f"Error deleting post: {e}")
+        flash("An error occurred while deleting the post.", "error")
+        return redirect(url_for("home"))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
