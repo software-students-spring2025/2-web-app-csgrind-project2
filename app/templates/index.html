@@ -26,12 +26,6 @@
             <h2>Welcome to BobstLAF</h2>
             <p>Easily report and find lost items at Bobst Library. Let’s help each other reunite with our lost belongings.</p>
 
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input type="text" placeholder="Search lost or found items..." class="search-bar">
-                <button class="search-btn">Search</button>
-            </div>
-
             <!-- Quick Links -->
             <div class="quick-links">
                 <a href="{{ url_for('lost_items') }}" class="quick-link-card lost">
@@ -45,13 +39,13 @@
             </div>
 
             <!-- Recently Reported Items -->
-            <h3>Recently Reported</h3>
+            <h3>Recently Reported Items</h3>
             <div class="items-container">
                 {% for item in recent_items %}
                 <div class="item-card">
                     <h3>{{ item.item_name }}</h3>
                     <p><strong>Status:</strong> {{ item.status | capitalize }}</p>
-                    <p><strong>Last Seen Floor:</strong> {{ item.floor }}</p>
+                    <p><strong>Last Seen on Floor:</strong> {{ item.floor }}</p>
                     <p><strong>Date:</strong> {{ item.get('dateLost', item.get('dateFound')) }}</p>
                 </div>
                 {% else %}
@@ -65,6 +59,6 @@
     </div>
 </body>
 <footer>
-    <p>&copy; 2025 BobstLAF</p>
+    <p>&nbsp;&nbsp;&copy; 2025 BobstLAF</p>
 </footer>
 </html>

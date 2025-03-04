@@ -24,6 +24,13 @@
     <div class="container">
         <main>
             <h2>Found Items</h2>
+
+            <!-- Search Bar -->
+            <form action="{{ url_for('found_items') }}" method="GET" class="search-form">
+                <input type="text" name="query" placeholder="Search found items by name or description..." value="{{ request.args.get('query', '') }}">
+                <button type="submit">Search</button>
+            </form>
+
             <div class="items-container">
                 {% for item in found_items %}
                 <div class="item-card">
@@ -33,12 +40,12 @@
                     <p><strong>Date Found:</strong> {{ item.dateFound }}</p>
                 </div>
                 {% else %}
-                <p>No found items have been reported yet.</p>
+                    <p class="no-results">No found items have been reported yet, or none match your search.</p>
                 {% endfor %}
             </div>
     </div>
 </body>
 <footer>
-    <p>&copy; 2025 BobstLAF</p>
+    <p>&nbsp;&nbsp;&copy; 2025 BobstLAF</p>
 </footer>
 </html>
