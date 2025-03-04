@@ -51,7 +51,6 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
-/* Search Bar */
 .search-container {
     display: flex;
     justify-content: center;
@@ -81,7 +80,6 @@ nav ul li a:hover {
     background: #4a0575;
 }
 
-/* Quick Links */
 .quick-links {
     display: flex;
     justify-content: center;
@@ -112,7 +110,6 @@ nav ul li a:hover {
     opacity: 0.8;
 }
 
-/* Recently Reported Items */
 .items-container {
     display: flex;
     flex-direction: column;
@@ -138,7 +135,6 @@ nav ul li a:hover {
     font-size: 16px;
 }
 
-/* Post Button */
 .post-btn {
     display: block;
     width: fit-content;

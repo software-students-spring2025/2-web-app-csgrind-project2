@@ -80,12 +80,14 @@ def account():
         # Ensure user is logged in
         user_id = session.get("user_id")
 
+        # If not, force login
         if not user_id:
             flash("You must be logged in to access your account.", "error")
             return redirect(url_for("login"))
 
         user = mongo.db.user.find_one({"_id": ObjectId(user_id)})
 
+        # If user doesn't exist, force login
         if not user:
             flash("User not found.", "error")
             return redirect(url_for("login"))
@@ -109,7 +111,7 @@ def lost_items():
 
         search = {"status": "lost"}
 
-        # If we have a nonempty search
+        # If we have a nonempty search, add search to filter
         if query:
             search["$or"] = [
                 {"itemName": {"$regex": query, "$options": "i"}}, 
@@ -135,7 +137,7 @@ def found_items():
 
         search = {"status": "found"}
 
-         # If we have a nonempty search
+         # If we have a nonempty search, add search to filter
         if query:
             search["$or"] = [
                 {"itemName": {"$regex": query, "$options": "i"}}, 
@@ -158,6 +160,8 @@ def submit_post():
     try:
         # Check if user is logged in
         user_id = session.get("user_id")
+
+        # If not, force login
         if not user_id:
             flash("You must be logged in to post an item.", "error")
             return redirect(url_for("login"))
@@ -168,6 +172,7 @@ def submit_post():
         location = int(request.form["location"])
         date = request.form["date"]
 
+        # Found Item Post
         if status == 'found':
             item = {
                 "userId": user_id,
@@ -179,7 +184,8 @@ def submit_post():
                 "updatedAt": date
             }
             mongo.db.item.insert_one(item)
-            
+        
+        # Lost Item Post
         else:
             item = {
                 "userId": user_id,
@@ -206,14 +212,16 @@ def edit_post(post_id):
         user_id = session.get("user_id")
         user_role = session.get("role")
 
+        # Find post to edit
         items_collection = mongo.db.item
         post = items_collection.find_one({"_id": ObjectId(post_id)})
 
+        # If post doesn't exist, go to landing page
         if not post:
             flash("No posts created.", "error")
             return redirect(url_for("home"))
 
-        # Admin or post owner can edit
+        # Check if user has edit access
         if user_role != "admin" and str(post["userId"]) != user_id:
             flash("You do not have permission to edit this post.", "error")
             return redirect(url_for("home"))
@@ -239,26 +247,28 @@ def edit_post(post_id):
 @app.route("/delete_post/<post_id>", methods=["POST"])
 def delete_post(post_id):
     try:
-        # Ensure user is logged in
+        # Check if user is logged in
         user_id = session.get("user_id")
         user_role = session.get("role")
 
+        # If user is not logged in, force login
         if not user_id:
             flash("You must be logged in to delete a post.", "error")
             return redirect(url_for("login"))
 
-        # Find the post
+        # Find post to delete
         post = mongo.db.item.find_one({"_id": ObjectId(post_id)})
+
+        # If post doesn't exist, go back to landing page
         if not post:
             flash("Post not found.", "error")
             return redirect(url_for("home"))
 
-        # Ensure user has the right to delete
+        # Check if user has delete access
         if user_role != "admin" and str(post["userId"]) != user_id:
             flash("You do not have permission to delete this post.", "error")
             return redirect(url_for("home"))
 
-        # Delete the post
         mongo.db.item.delete_one({"_id": ObjectId(post_id)})
 
         flash("Post deleted successfully!", "success")
@@ -268,7 +278,6 @@ def delete_post(post_id):
         print(f"Error deleting post: {e}")
         flash("An error occurred while deleting the post.", "error")
         return redirect(url_for("home"))
-
 
 
 if __name__ == '__main__':
