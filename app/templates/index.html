@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobstLAF</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>BobstLAF - Home</title>
+    <link rel="stylesheet" href="../static/index.css">
 </head>
-
 <body>
+    <header>
+        <div class="logo">
+            <h1>BobstLAF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lost_items.html">Lost</a></li>
+                <li><a href="found_items.html">Found</a></li>
+                <li><a href="post_item.html">Post</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
-        <header>
-            <div class="logo">
-                <h1>BobstLAF</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                    <li><a href="{{ url_for('main.page1') }}">Page 1</a></li>
-                    <li><a href="{{ url_for('main.page2') }}">Page 2</a></li>
-                    <li><a href="{{ url_for('main.page3') }}">Page 3</a></li>
-                    <li><a href="{{ url_for('main.page4') }}">Page 4</a></li>
-                </ul>
-            </nav>
-        </header>
         <main>
-        {% block container %} 
-        <table>
-            <thead>
-                <tr>
-                    <th>NetID</th>
-                    <th>Item</th>
-                    <th>Item Description</th>
-                    <th>Last Seen Floor</th>
-                    <th>Last Seen Area</th>
-                    <th>Lost Date</th>
-                    <th>Date Found</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>ab123</td>
-                    <td>lorem ipsum</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-                    <td>6</td>
-                    <td>North</td>
-                    <td>XX/XX/XXXX</td>
-                    <td>XX/XX/XXXX</td>
-                </tr>
-                <tr>
-                    <td>ab123</td>
-                    <td>lorem ipsum</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-                    <td>4</td>
-                    <td>South</td>
-                    <td>XX/XX/XXXX</td>
-                    <td>XX/XX/XXXX</td>
-                </tr>
-            </tbody>
-        </table>
+            <h2>Welcome to BobstLAF</h2>
+            <p>Easily report and find lost items at Bobst Library. Let’s help each other reunite with our lost belongings.</p>
 
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" placeholder="Search lost or found items..." class="search-bar">
+                <button class="search-btn">Search</button>
+            </div>
 
-        {% endblock %}
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <a href="lost_items.html" class="quick-link-card lost">
+                    <h3>Lost an Item?</h3>
+                    <p>Post about your lost item so others can help.</p>
+                </a>
+                <a href="found_items.html" class="quick-link-card found">
+                    <h3>Found an Item?</h3>
+                    <p>Report a random item you found.</p>
+                </a>
+            </div>
+
+            <!-- Recently Reported Items -->
+            <h3>Recently Reported</h3>
+            <div class="items-container">
+                <div class="item-card">
+                    <h3>Backpack</h3>
+                    <p><strong>Lost on Floor:</strong> 4</p>
+                    <p><strong>Date:</strong> 03/01/2025</p>
+                </div>
+                <div class="item-card">
+                    <h3>Wallet</h3>
+                    <p><strong>Found on Floor:</strong> 2</p>
+                    <p><strong>Date:</strong> 02/28/2025</p>
+                </div>
+            </div>
+
+            <!-- Post an Item -->
+            <a href="post_item.html" class="post-btn">Post a Lost or Found Item</a>
         </main>
-        <footer>
-          
-        </footer>
-      </div>
+    </div>
 </body>
+<footer>
+    <p>&copy; 2025 BobstLAF</p>
+</footer>
+</html>
