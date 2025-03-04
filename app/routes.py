@@ -148,6 +148,12 @@ def found_items():
 @app.route("/submit_post", methods=["POST"])
 def submit_post():
     try:
+        # Check if user is logged in
+        user_id = session.get("user_id")
+        if not user_id:
+            flash("You must be logged in to post an item.", "error")
+            return redirect(url_for("login"))
+
         itemName = request.form["itemName"]
         description = request.form["description"]
         status = request.form["status"]
@@ -156,6 +162,7 @@ def submit_post():
 
         if status == 'found':
             item = {
+                "userId": user_id,
                 "itemName": itemName,
                 "description": description,
                 "status": status,
@@ -167,6 +174,7 @@ def submit_post():
             
         else:
             item = {
+                "userId": user_id,
                 "itemName": itemName,
                 "description": description,
                 "status": status,
