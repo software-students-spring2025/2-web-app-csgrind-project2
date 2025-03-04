@@ -1,0 +1,126 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobstLAF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="../static/lost_items.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>BobstLAF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="base.html">Home</a></li> {{ url_for('main.home') }}
+                    <li><a href="lost_items.html">Lost</a></li> {{ url_for('main.page1') }}
+                    <li><a href="found_items.html">Found</a></li> {{ url_for('main.page2') }}
+                    <li><a href="post_item.html">Post</a></li> {{ url_for('main.page3') }}
+                    <li><a href="account.html">Account</a></li> {{ url_for('main.page4') }}
+                </ul>
+            </nav>
+        </header>
+        <main>
+        {% block container %} 
+        <table>
+            <thead>
+                <tr>
+                    <th>NetID</th>
+                    <th>Item</th>
+                    <th>Item Description</th>
+                    <th>Last Seen Floor</th>
+                    <th>Last Seen Area</th>
+                    <th>Lost Date</th>
+                    <th>Date Found</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>6</td>
+                    <td>North</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+                <tr>
+                    <td>ab123</td>
+                    <td>lorem ipsum</td>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
+                    <td>4</td>
+                    <td>South</td>
+                    <td>XX/XX/XXXX</td>
+                    <td>XX/XX/XXXX</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        {% endblock %}
+        </main>
+        <footer>
+          
+        </footer>
+      </div>
+</body>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobstLAF - Lost Items</title>
+    <link rel="stylesheet" href="../static/lost_items.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BobstLAF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li> <!---{{ url_for('main.home') }}-->
+                <li><a href="lost_items.html">Lost</a></li>
+                <li><a href="found_items.html">Found</a></li>
+                <li><a href="post_item.html">Post</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <h2>Lost Items</h2>
+            <div class="items-container">
+                <div class="item-card">
+                    <h3>Backpack</h3>
+                    <p><strong>Description:</strong> Black Adidas backpack</p>
+                    <p><strong>Last Seen Floor:</strong> 4</p>
+                    <p><strong>Last Seen Area:</strong> Study Lounge</p>
+                    <p><strong>Lost Date:</strong> 03/01/2025</p>
+                </div>
+                <div class="item-card">
+                    <h3>Water Bottle</h3>
+                    <p><strong>Description:</strong> Blue Hydroflask</p>
+                    <p><strong>Last Seen Floor:</strong> 6</p>
+                    <p><strong>Last Seen Area:</strong> Library Entrance</p>
+                    <p><strong>Lost Date:</strong> 02/28/2025</p>
+                </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 BobstLAF</p>
+</footer>
+</html>

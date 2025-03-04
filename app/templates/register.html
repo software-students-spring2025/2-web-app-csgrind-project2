@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - BobstLAF</title>
+    <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>BobstLAF</h1>
+            <p>Create an account to access the Lost & Found system.</p>
+            
+            <form action="index.html" method="POST"> <!-- "{{ url_for('register') }}" -->
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <input type="text" name="email" placeholder="NYU Email" required>
+                <input type="password" name="password" placeholder="Create Password" required>
+
+                <label for="role" class="role-label">Select Role:</label>
+                <select name="role" id="role" required>
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                </select>
+                
+                <button type="submit" class="login-btn">Sign Up</button>
+            </form>
+            <hr>
+            <p>Already have an account? <a href="login.html" class="login-link">Log in</a></p> <!---{{ url_for('login') }}--->
+        </div>
+    </div>
+</body>
+</html>
+
