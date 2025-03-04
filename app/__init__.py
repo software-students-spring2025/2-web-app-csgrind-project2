@@ -3,27 +3,25 @@ from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 import os
 
-mongo = PyMongo()
+#load environment variables
+load_dotenv()
 
-def create_app():
-    #load environment variables in memory
-    load_dotenv()
+app = Flask(__name__)
 
-    #access env variables
-    ADMIN_URI = os.getenv("ADMIN_URI");
-    USER_URI = os.getenv("USER_URI");   # for use when login auth is implemented
+#configure MongoDB settings
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
-    #initialize flask app
-    app = Flask(__name__)
+mongo = PyMongo(app)
 
-    #set environment variable
-    app.config["MONGO_URI"] = ADMIN_URI;
+#test the mongodb connection 
+try:
+    mongo.cx.server_info()
+    print("MongoDB connected successfully")
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")
+    raise e
 
-    #initialize mongo
-    mongo.init_app(app)
+#importing routes after app is created to avoid circular imports
+from app import routes
 
-    #register flask app with blueprint
-    from app.routes import main
-    app.register_blueprint(main)
 
-    return app
