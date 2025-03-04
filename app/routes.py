@@ -32,8 +32,8 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email")  # Get email from form
-        password = request.form.get("password")  # Get password from form
+        email = request.form["email"]  # Get email from form
+        password = request.form["password"]  # Get password from form
 
         # Look for the user in the MongoDB 'user' collection
         user = mongo.db.user.find_one({"email": email})
@@ -55,10 +55,22 @@ def account():
 def lost_items():
     try:
         items_collection = mongo.db.item
-        lost_items = list(items_collection.find({"status": "lost"}).sort("dateLost", -1))
+        query = request.args.get("query", "").strip() # get search query
+
+        search = {"status": "lost"}
+
+        # If we have a nonempty search
+        if query:
+            search["$or"] = [
+                {"item_name": {"$regex": query, "$options": "i"}}, 
+                {"description": {"$regex": query, "$options": "i"}}
+            ]
+
+        lost_items = list(items_collection.find(search).sort("dateLost", -1))
 
         for item in lost_items:
             item["_id"] = str(item["_id"])
+
         return render_template("lost_items.html", lost_items=lost_items)
 
     except Exception as e:
@@ -69,11 +81,24 @@ def lost_items():
 def found_items():
     try:
         items_collection = mongo.db.item
-        found_items = list(items_collection.find({"status": "found"}).sort("dateFound", -1))
+        query = request.args.get("query", "").strip() # get search query
+
+        search = {"status": "lost"}
+
+         # If we have a nonempty search
+        if query:
+            search["$or"] = [
+                {"item_name": {"$regex": query, "$options": "i"}}, 
+                {"description": {"$regex": query, "$options": "i"}}
+            ]
+
+        found_items = list(items_collection.find(search).sort("dateFound", -1))
 
         for item in found_items:
             item["_id"] = str(item["_id"])
+
         return render_template("found_items.html", found_items=found_items)
+
     except Exception as e:
         print(f"Error accessing MongoDB: {e}")
         return jsonify({"error": "Database error"}), 500
@@ -84,25 +109,28 @@ def submit_post():
         item_name = request.form["item_name"]
         description = request.form["description"]
         status = request.form["status"]
-        location = request.form["location"]
+        location = int(request.form["location"])
         date = request.form["date"]
 
         if status == 'found':
             item = {
-                "item_name": item_name,
+                "itemName": item_name,
                 "description": description,
                 "status": status,
                 "floor": location,
-                "dateFound": date
+                "dateFound": date,
+                "updatedAt": date
             }
             mongo.db.item.insert_one(item)
+            
         else:
             item = {
-                "item_name": item_name,
+                "itemName": item_name,
                 "description": description,
                 "status": status,
                 "floor": location,
-                "dateLost": date
+                "dateLost": date,
+                "updatedAt": date
             }
             mongo.db.item.insert_one(item)
 
