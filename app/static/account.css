@@ -109,3 +109,51 @@ nav ul li a:hover {
     margin: 5px 0;
     font-size: 16px;
 }
+
+/* Container for buttons */
+.post-actions {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px;
+}
+
+/* General Button Styling */
+.edit-btn, .delete-btn {
+    display: inline-block;
+    padding: 10px 16px; /* Ensures uniform button size */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+    min-width: 80px; /* Ensures buttons are same width */
+}
+
+/* Edit Button: Purple Theme */
+.edit-btn {
+    background-color: #57068c; /* Matches website theme */
+    color: white;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    background-color: #450574; /* Slightly darker purple */
+}
+
+/* Delete Button: Red */
+.delete-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+/* Ensure delete form does not disrupt layout */
+.delete-form {
+    margin: 0;
+    display: inline-block;
+}
