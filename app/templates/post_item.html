@@ -1,8 +1,49 @@
-{% extends "base.html" %}
-
-{% block title %}Page 4 - BobstLAF{% endblock %}
-
-{% block content %}
-    <h2>Welcome to Page 4</h2>
-    <p>This is the content of Page 4.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BobstLAF - Found Items</title>
+    <link rel="stylesheet" href="../static/found_items.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>BobstLAF</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('lost_items') }}">Lost</a></li>
+                <li><a href="{{ url_for('found_items') }}">Found</a></li>
+                <li><a href="{{ url_for('post_item') }}">Post</a></li>
+                <li><a href="{{ url_for('account') }}">Account</a></li>     
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            <h2>Found Items</h2>
+            <div class="items-container">
+                <div class="item-card">
+                    <h3>Gucci Wallet</h3>
+                    <p><strong>Description:</strong> Brown leather Gucci wallet</p>
+                    <p><strong>Found on Floor:</strong> 1</p>
+                    <p><strong>Date Found:</strong> 02/16/2025</p>
+                    <p><strong>Last Updated:</strong> 02/16/2025</p>
+                </div>
+                <div class="item-card">
+                    <h3>Apple AirPods</h3>
+                    <p><strong>Description:</strong> White AirPods Pro in a black case</p>
+                    <p><strong>Found on Floor:</strong> 3</p>
+                    <p><strong>Date Found:</strong> 02/14/2025</p>
+                    <p><strong>Last Updated:</strong> 02/14/2025</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 BobstLAF</p>
+</footer>
+</html>

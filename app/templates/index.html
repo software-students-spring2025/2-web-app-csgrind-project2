@@ -13,31 +13,15 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lost_items.html">Lost</a></li>
-                <li><a href="found_items.html">Found</a></li>
-                <li><a href="post_item.html">Post</a></li>
-                <li><a href="account.html">Account</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('lost_items') }}">Lost</a></li>
+                <li><a href="{{ url_for('found_items') }}">Found</a></li>
+                <li><a href="{{ url_for('post_item') }}">Post</a></li>
+                <li><a href="{{ url_for('account') }}">Account</a></li>                
             </ul>
         </nav>
     </header>
     <div class="container">
-        <!----
-        <header>
-            <div class="logo">
-                <h1>BobstLAF</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('page1') }}">Page 1</a></li>
-                    <li><a href="{{ url_for('page2') }}">Page 2</a></li>
-                    <li><a href="{{ url_for('page3') }}">Page 3</a></li>
-                    <li><a href="{{ url_for('page4') }}">Page 4</a></li>
-                </ul>
-            </nav>
-        </header>
-        -->
         <main>
             <h2>Welcome to BobstLAF</h2>
             <p>Easily report and find lost items at Bobst Library. Let’s help each other reunite with our lost belongings.</p>
@@ -50,11 +34,11 @@
 
             <!-- Quick Links -->
             <div class="quick-links">
-                <a href="lost_items.html" class="quick-link-card lost">
+                <a href="{{ url_for('lost_items') }}" class="quick-link-card lost">
                     <h3>Lost an Item?</h3>
                     <p>Post about your lost item so others can help.</p>
                 </a>
-                <a href="found_items.html" class="quick-link-card found">
+                <a href="{{ url_for('found_items') }}" class="quick-link-card found">
                     <h3>Found an Item?</h3>
                     <p>Report a random item you found.</p>
                 </a>
@@ -76,7 +60,7 @@
             </div>
 
             <!-- Post an Item -->
-            <a href="post_item.html" class="post-btn">Post a Lost or Found Item</a>
+            <a href="{{ url_for('post_item') }}" class="post-btn">Post a Lost or Found Item</a>
         </main>
     </div>
 </body>
