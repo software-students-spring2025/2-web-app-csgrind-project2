@@ -46,7 +46,7 @@
                 {% if user_posts %}
                     {% for post in user_posts %}
                         <div class="post-card">
-                            <h4>Lost - Black Backpack</h4>
+                            <h4>{{ post.status | capitalize}} - {{ post.item_name }}</h4>
                             <p><strong>Description:</strong> {{ post.description }}</p>
                             <p><strong>Last Seen Floor:</strong> {{ post.floor }}</p>
 

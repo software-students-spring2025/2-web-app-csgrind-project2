@@ -1,4 +1,5 @@
 from flask import jsonify, render_template, request, redirect, url_for, session, flash
+from bson.objectid import ObjectId
 from app import app, mongo
 
 @app.route("/")
@@ -49,7 +50,23 @@ def login():
 
 @app.route("/account")
 def account():
-    return render_template("account.html")
+    try:
+        # Ensure user is logged in
+        user_id = session.get("user_id")
+
+        user = mongo.db.user.find_one({"_id": ObjectId(user_id)})
+
+        if not user:
+            flash("User not found.")
+            return redirect(url_for("login"))
+
+        user_posts = list(mongo.db.item.find({"userId": str(user["_id"])}).sort("dateLost", -1))
+
+        return render_template("account.html", user=user, user_posts=user_posts)
+
+    except Exception as e:
+        print(f"Error accessing account data: {e}")
+        return jsonify({"error": "Database error"}), 500
 
 @app.route("/lost_items", methods=["GET"])
 def lost_items():
