@@ -51,16 +51,48 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
-/* Items Container */
-.items-container {
+/* Account Header */
+.account-header {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-/* Individual Item Card */
-.item-card {
+/* Logout Button */
+.logout-btn {
+    padding: 8px 15px;
+    background: #d9534f; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; 
+}
+
+.logout-btn:hover {
+    background: #c9302c;
+}
+
+/* Account Card */
+.account-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Previous Posts Section */
+.previous-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-card {
     background: white;
     padding: 15px;
     border-radius: 8px;
@@ -68,12 +100,12 @@ nav ul li a:hover {
     border: 1px solid #ddd;
 }
 
-.item-card h3 {
+.post-card h4 {
     margin-top: 0;
     color: #57068c;
 }
 
-.item-card p {
+.post-card p {
     margin: 5px 0;
     font-size: 16px;
 }
