@@ -12,7 +12,8 @@
             <h1>BobstLAF</h1>
             <p>Create an account to access the Lost & Found system.</p>
             
-            <form action="index.html" method="POST"> <!-- "{{ url_for('register') }}" -->
+            <!-- Form action updated to post to the correct route -->
+            <form action="{{ url_for('register') }}" method="POST">
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="email" placeholder="NYU Email" required>
@@ -27,9 +28,8 @@
                 <button type="submit" class="login-btn">Sign Up</button>
             </form>
             <hr>
-            <p>Already have an account? <a href="login.html" class="login-link">Log in</a></p> <!---{{ url_for('login') }}--->
+            <p>Already have an account? <a href="{{ url_for('login') }}" class="login-link">Log in</a></p>
         </div>
     </div>
 </body>
 </html>
-
