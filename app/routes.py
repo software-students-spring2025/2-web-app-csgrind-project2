@@ -26,8 +26,33 @@ def home():
 def post_item():
     return render_template("post_item.html")
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        first_name = request.form["firstName"]
+        last_name = request.form["lastName"]
+        email = request.form["email"]
+        password = request.form["password"]
+        role = request.form["role"]
+
+        # Check if the user already exists
+        existing_user = mongo.db.user.find_one({"email": email})
+        if existing_user:
+            flash("Email already registered. Please log in.")
+            return redirect(url_for("login"))
+
+        # If the user does not exist, insert the new user
+        mongo.db.user.insert_one({
+            "firstName": first_name,
+            "lastName": last_name,
+            "email": email,
+            "password": password,  # Note: you may want to hash the password before saving it
+            "role": role
+        })
+        
+        flash("Account created successfully! Please log in.")
+        return redirect(url_for("login"))
+
     return render_template("register.html")
 
 @app.route("/login", methods=["GET", "POST"])
