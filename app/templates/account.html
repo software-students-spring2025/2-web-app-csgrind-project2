@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobstLAF - Found Items</title>
-    <link rel="stylesheet" href="../static/found_items.css">
+    <title>My Account - BobstLAF</title>
+    <link rel="stylesheet" href="../static/account.css">
 </head>
 <body>
     <header>
@@ -13,7 +13,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('lost_items') }}">Lost</a></li>
                 <li><a href="{{ url_for('found_items') }}">Found</a></li>
                 <li><a href="{{ url_for('post_item') }}">Post</a></li>
@@ -21,19 +21,38 @@
             </ul>
         </nav>
     </header>
+
     <div class="container">
         <main>
-            <h2>Found Items</h2>
-            <div class="items-container">
-                <div class="item-card">
-                    <h3>Gucci Wallet</h3>
-                    <p><strong>Description:</strong> Brown leather Gucci wallet</p>
-                    <p><strong>Found on Floor:</strong> 1</p>
-                    <p><strong>Date Found:</strong> 02/16/2025</p>
-                    <p><strong>Last Updated:</strong> 02/16/2025</p>
+            <!-- Account Header -->
+            <div class="account-header">
+                <h2>My Account</h2>
+                <a href="{{ url_for('login') }}" class="logout-btn">Log Out</a>
+            </div>
+            
+            <!-- Account Details -->
+            <div class="account-card">
+                <h3>Account Details</h3>
+                <p><strong>First Name:</strong> Larry</p>
+                <p><strong>Last Name:</strong> Yang</p>
+                <p><strong>Email:</strong> ly2380@nyu.edu</p>
+                <p><strong>Role:</strong> Student</p>
+                <p><strong>Account Created:</strong> March 3, 2025</p>
+            </div>
+
+            <!-- Previous Posts Section -->
+            <h3>My Previous Posts</h3>
+            <div class="previous-posts">
+                <div class="post-card">
+                    <h4>Lost - Black Backpack</h4>
+                    <p><strong>Description:</strong> Black Adidas backpack</p>
+                    <p><strong>Last Seen Floor:</strong> 4</p>
+                    <p><strong>Last Seen Area:</strong> Study Lounge</p>
+                    <p><strong>Lost Date:</strong> 03/01/2025</p>
                 </div>
-                <div class="item-card">
-                    <h3>Apple AirPods</h3>
+
+                <div class="post-card">
+                    <h4>Found - White AirPods</h4>
                     <p><strong>Description:</strong> White AirPods Pro in a black case</p>
                     <p><strong>Found on Floor:</strong> 3</p>
                     <p><strong>Date Found:</strong> 02/14/2025</p>
@@ -43,7 +62,4 @@
         </main>
     </div>
 </body>
-<footer>
-    <p>&copy; 2025 BobstLAF</p>
-</footer>
 </html>
